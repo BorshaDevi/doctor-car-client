@@ -5,6 +5,7 @@ import Blogs from "../Pages/Home/Blogs";
 import Services from "../Pages/Home/Services";
 import About from "../Pages/Home/About";
 import Error from "../Pages/Home/Error/Error";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
     {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
       errorElement:<Error></Error>,
       children:[
         {
-            path:'/home',
+            path:'/',
             element:<Home></Home>
         },
         {
@@ -21,13 +22,9 @@ const router = createBrowserRouter([
             element:<Blogs></Blogs>
         },
         {
-            path:'/services',
-            element:<Services></Services>
-        },
-        {
-            path:'/about',
-            element:<About></About>
-        },
+          path:'/login',
+          element:<Login></Login>
+        }
       ]
     },
   ]);

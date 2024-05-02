@@ -3,9 +3,8 @@ import { CiSearch } from "react-icons/ci";
 import { IoBagOutline } from "react-icons/io5";
 const Navbar = () => {
     const links=<>
-     <li><NavLink to='/home'>Home</NavLink></li>
-     <li><NavLink to='/about'>About</NavLink></li>
-     <li><NavLink to='/services'>Services</NavLink></li>
+     <li><NavLink to='/'>Home</NavLink></li>
+    
      <li><NavLink to='/blog'>Blog</NavLink></li>
      <li><NavLink to='/contact'>Contact</NavLink></li>
     </>
