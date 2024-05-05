@@ -1,12 +1,28 @@
 import { NavLink } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { IoBagOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { AuthContext } from "../../Authprovider/Authprovider";
 const Navbar = () => {
+  const{user,logOut}=useContext(AuthContext)
+  const handleLogOut=()=>{
+    logOut()
+    .then(result=> {
+      console.log(result)
+    })
+    .catch(error =>console.log(error))
+  }
     const links=<>
      <li><NavLink to='/'>Home</NavLink></li>
     
      <li><NavLink to='/blog'>Blog</NavLink></li>
      <li><NavLink to='/contact'>Contact</NavLink></li>
+     {
+      user?.email?<div className="flex">
+         <li><NavLink to='/bookings'>My Bookings</NavLink></li>
+        <li className="btn" onClick={handleLogOut}>LogOut</li>
+      </div>:<li  className="btn"><NavLink to='/login'>Login</NavLink></li>
+     }
     </>
     return (
         <div>

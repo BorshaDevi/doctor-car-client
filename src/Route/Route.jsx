@@ -7,6 +7,9 @@ import About from "../Pages/Home/About";
 import Error from "../Pages/Home/Error/Error";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import CheakOut from "../Pages/CheakOut/CheakOut";
+import Bookings from "../Pages/Bookings/Bookings";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +32,16 @@ const router = createBrowserRouter([
         {
           path:'/signUp',
           element:<SignUp></SignUp>
+        },
+        {
+          path:'/checkout/:id',
+          element:<CheakOut></CheakOut>,
+          loader:({params}) =>fetch(`http://localhost:5000/doctors/${params.id}`)
+
+        },
+        {
+          path:'/bookings',
+          element:<PrivateRoute><Bookings></Bookings></PrivateRoute>
         }
       ]
     },
