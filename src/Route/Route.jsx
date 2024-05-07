@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         },
         {
           path:'/checkout/:id',
-          element:<CheakOut></CheakOut>,
+          element:<PrivateRoute><CheakOut></CheakOut></PrivateRoute>,
           loader:({params}) =>fetch(`http://localhost:5000/doctors/${params.id}`)
 
         },

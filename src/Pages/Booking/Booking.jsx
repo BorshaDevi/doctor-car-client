@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 const Booking = ({getData,getDatas,setGetdatas}) => {
-    const {img,price,date,_id}=getData
+    const {img,price,date,_id,status}=getData
     const handleDelete=id=>{
         Swal.fire({
             title: "Are you sure?",
@@ -36,6 +36,26 @@ const Booking = ({getData,getDatas,setGetdatas}) => {
           });
     }
     const handleConform=Id=>{
+      fetch(`http://localhost:5000/ordered/${Id}`,{
+        method:'PATCH',
+        headers:{
+          "content-type":"application/json",
+
+        },
+        body:JSON.stringify({status:'conform'})
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.modifiedCount>0){
+          const conforms=getDatas.filter(getdata => getdata._id !== Id );
+          const update=getDatas.find(getdata => getdata._id === Id);
+          update.status='conform';
+          const result=[update,...conforms];
+          setGetdatas(result)
+
+        }
+      })
 
     }
     return (
@@ -81,7 +101,10 @@ const Booking = ({getData,getDatas,setGetdatas}) => {
         </td>
         <td>{date}</td>
         <th>
-          <button onClick={() => handleConform(_id)} className="btn btn-ghost btn-xs">Conform</button>
+          {
+           status === 'conform'? <span className="text-red-600">conformed</span> :
+            <button onClick={() => handleConform(_id)} className="btn btn-ghost btn-xs">Conform</button>
+          }
         </th>
       </tr>
       

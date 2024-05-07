@@ -12,7 +12,7 @@ const Bookings = () => {
         fetch(url)
         .then(res => res.json())
         .then(data => setGetdatas(data))
-    },[])
+    },[url])
     return (
       <div>
           <h1>getDatas:{getDatas.length}</h1>
