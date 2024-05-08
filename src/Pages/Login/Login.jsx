@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
-import axios from "axios";
+
 const Login = () => {
   const {signIn}=useContext(AuthContext)
   const location=useLocation()
@@ -19,22 +19,7 @@ const Login = () => {
         
         signIn(email,password)
         .then(result => {
-          // console.log(result.user)
-          // navigate(location?.state?location?.state: '/')
-          // const user={email};
-          // axios.post('http://localhost:5000/jwt',user)
-          // .then(data => console.log(data.data))
-          // const velite={email}
-          // axios.post('http://localhost:5000/token',velite)
-          // .then(res => {
-          //   console.log(res.data)
-          // })
-          const exist={email}
-          axios.post('http://localhost:5000/token',exist)
-          .then(res => {
-            console.log(res.data)
-          })
-          
+              navigate(location?.state?location?.state: '/')
         })
         .catch(error => console.log(error))
     }
