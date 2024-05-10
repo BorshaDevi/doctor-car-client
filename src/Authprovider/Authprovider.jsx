@@ -22,18 +22,18 @@ const Authprovider = ({children}) => {
     }
     useEffect(() => {
         const unsubscribe= onAuthStateChanged(auth,currentuser => {
+            // const loggingUser=currentuser?.email || user?.email
             console.log(currentuser)
             setUser(currentuser)
             setLoading(false)
-        //     if(user){
-        //         axios.post('http://localhost:5000/token',{exist:user?.email},{withCredentials:true})
-        //   .then(res => {
-        //     console.log(res.data)
-            
-        //   })
-        //     }
         if(user){
             axios.post('http://localhost:5000/token',{exist:user?.email},{withCredentials:true})
+            .then(res => {
+                console.log(res.data)
+            })
+        }
+        else{
+            axios.post('http://localhost:5000/logout',{exist:user?.email},{withCredentials:true})
             .then(res => {
                 console.log(res.data)
             })
